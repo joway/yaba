@@ -1,7 +1,9 @@
 github.com/davecgh/go-spew v1.1.0 h1:ZDRjVQ15GmhC3fiQ8ni8+OwkZQO4DARzQgrnXU1Liz8=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
-github.com/dghubble/trie v0.0.0-20181113075846-18baf4ed44b8 h1:lavv92cPZ0Q1PIB8UjWGr4jPMN0EP+wpupqEKqLGm9Y=
-github.com/dghubble/trie v0.0.0-20181113075846-18baf4ed44b8/go.mod h1:P5ymVhkUtwRIkYn2IuBeuVezlrsshMKWQJymph3GOp8=
+github.com/derekparker/trie v0.0.0-20180212171413-e608c2733dc7 h1:Cab9yoTQh1TxObKfis1DzZ6vFLK5kbeenMjRES/UE3o=
+github.com/derekparker/trie v0.0.0-20180212171413-e608c2733dc7/go.mod h1:D6ICZm05D9VN1n/8iOtBxLpXtoGp6HDFUJ1RNVieOSE=
+github.com/joway/trie v0.1.2 h1:CPbCdNwMxE/qcOvR8MF6CwlTlX8YOLhJBS6UDY5LiP0=
+github.com/joway/trie v0.1.2/go.mod h1:KvZcTZTyrY99Ks2Hkuyhv5yqsFACyj+bCbjuJxJ6LaQ=
 github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZbAQM=
 github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZNVY4sRDYZ/4=
 github.com/stretchr/objx v0.1.0/go.mod h1:HFkY916IF+rwdDfMAkV7OtwuqBVzrE8GR6GFx+wExME=

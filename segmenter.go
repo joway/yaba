@@ -2,44 +2,62 @@ package yaba
 
 import (
 	"io/ioutil"
-	"strconv"
 	"strings"
 )
 
 type Segmenter struct {
-	dict *Dictionary
+	dict      *Dictionary
+	stopWords []string
 }
 
 func NewSegmenter() *Segmenter {
 	return &Segmenter{}
 }
 
-func (s *Segmenter) Segment(text string) []Token {
-	
+func (seg *Segmenter) Segment(text string) []*Token {
+	tokens := make([]*Token, 0)
+	start := 0
+	total := len(text)
+	for start < total {
+		token := seg.dict.Match(text[start:])
+		if token == nil {
+			start++
+			continue
+		}
+		tokens = append(
+			tokens,
+			NewToken(
+				token.Text,
+				start,
+				token.Frequency,
+				token.Pos,
+			),
+		)
+		start += len(token.Text)
+	}
+	return tokens
 }
 
-func (seg *Segmenter) LoadDictionary(fileName string) error {
-	if fileName == "" {
-		fileName = "data/dict.txt"
+func (seg *Segmenter) LoadStopWords(filename string) error {
+	if filename == "" {
+		filename = "data/stop.txt"
 	}
-
-	tokens := make([]*Token, 0)
-
-	content, err := ioutil.ReadFile(fileName)
+	content, err := ioutil.ReadFile(filename)
 	if err != nil {
 		return err
 	}
 	lines := strings.Split(string(content), "\n")
+	seg.stopWords = make([]string, len(lines))
 	for _, line := range lines {
-		split := strings.Split(line, " ")
-		word := split[0]
-		freq := split[1]
-		ifreq, _ := strconv.Atoi(freq)
-		pos := split[2]
-		tokens = append(tokens, NewToken(word, -1, ifreq, pos))
+		seg.stopWords = append(seg.stopWords, line)
 	}
-
-	seg.dict = NewDictionary(tokens)
-
 	return nil
+}
+
+func (seg *Segmenter) LoadDictionary(filename string) error {
+	if filename == "" {
+		filename = "data/dict.txt"
+	}
+	seg.dict = NewDictionary()
+	return seg.dict.Load(filename)
 }
